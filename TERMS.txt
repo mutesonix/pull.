@@ -1,0 +1,127 @@
+pull. — Terms of Use & Privacy Policy
+by SUNN. (Trithaset Chaimongkol)
+Version: 16 October 2026 · applies to every version of pull.
+
+By downloading, installing or using pull. you confirm that you have read and
+accept these terms. If you do not accept them, do not use pull.
+
+1. WHAT PULL. IS
+pull. is a free tool that runs on the user's own computer and saves videos the
+user is watching in their browser. The developer does not store, host, copy or
+distribute any video, and runs no server that video passes through. Every
+download happens directly between the user's computer and the source platform,
+on the user's own instruction.
+
+2. YOUR RESPONSIBILITY
+Use pull. only for content you own, content you have permission from the
+rights holder to download, or uses allowed by law (for example private,
+non-commercial use permitted under Thailand's Copyright Act B.E. 2537). Do not
+re-upload, sell or commercially use downloaded content without permission. Do
+not use pull. to circumvent DRM or other copy protection, or to breach any
+platform's terms of service. You alone are responsible for how you use pull.
+and for any legal consequences of that use.
+
+3. NO WARRANTY
+pull. is provided "AS IS", without warranty of any kind, express or implied,
+including fitness for a particular purpose, availability or freedom from
+errors. Platforms can change at any time and features may stop working. The
+developer has no obligation to fix, update or support pull.
+
+4. LIMITATION OF LIABILITY
+To the maximum extent permitted by law, the developer is not liable for any
+direct or indirect damage, including lost data, corrupted files, damage to
+your device, suspension of any platform account, or third-party claims,
+arising from the use of or inability to use pull. You agree not to bring
+claims against the developer, and to indemnify the developer against claims
+caused by your use of pull. in breach of these terms.
+
+5. PRIVACY
+pull. does not collect, send or sell personal data. It has no analytics,
+tracking or accounts. Login cookies for a source site are read from your
+browser only when you start a download, are passed only to the helper on the
+same computer, and are deleted when the job ends. Settings stay on your
+computer. pull. connects only to the platform you download from (including its
+video servers), and to GitHub
+when installing or updating its tools.
+
+6. THIRD-PARTY SOFTWARE
+The installer downloads yt-dlp (Unlicense), FFmpeg (LGPL/GPL) and Deno (MIT)
+from each project's official source onto your computer. These tools belong to
+their authors and are governed by their own licenses. Fonts used: Doto, Inter
+and IBM Plex Sans Thai under the SIL Open Font License.
+
+7. TRADEMARKS
+pull. is not affiliated with, endorsed by or partnered with YouTube, Google,
+Meta, Facebook, TikTok, Vimeo, Apple, Microsoft or any browser vendor. All
+names and trademarks belong to their owners and are used only to describe
+compatibility.
+
+8. OWNERSHIP OF PULL.
+The pull. name, the SUNN. logo and the program's design belong to SUNN.
+(Trithaset Chaimongkol). pull. is free for personal use. Do not sell it,
+redistribute modified copies under another name, or bundle it with other
+software. Download pull. only from the official download page; files from
+other sources are not from the developer.
+
+9. CHANGES
+The developer may change these terms or discontinue pull. at any time without
+notice. The current version is the one on the official download page.
+Continuing to use pull. after a change means you accept the new version.
+These terms are governed by the laws of Thailand.
+
+-------------------------------------------------------------------------------
+
+pull. — เงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว
+โดย SUNN. (Trithaset Chaimongkol) · ฉบับวันที่ 16 ตุลาคม 2026
+
+การดาวน์โหลด ติดตั้ง หรือใช้งาน pull. ถือว่าคุณอ่านและยอมรับข้อตกลงนี้แล้ว
+ถ้าไม่ยอมรับ กรุณาอย่าใช้งาน
+
+1. pull. คืออะไร
+pull. เป็นเครื่องมือฟรีที่ทำงานบนคอมพิวเตอร์ของผู้ใช้ ช่วยบันทึกวิดีโอที่ผู้ใช้เปิดดูอยู่
+ในเบราว์เซอร์ลงเครื่อง ผู้พัฒนาไม่ได้เก็บ โฮสต์ ทำสำเนา หรือแจกจ่ายวิดีโอใดๆ
+และไม่มีเซิร์ฟเวอร์ที่วิดีโอผ่าน การดาวน์โหลดเกิดขึ้นระหว่างเครื่องของผู้ใช้กับแพลตฟอร์มต้นทาง
+โดยตรง ตามคำสั่งของผู้ใช้
+
+2. ความรับผิดชอบของผู้ใช้
+ใช้ pull. กับคอนเทนต์ที่คุณเป็นเจ้าของ ได้รับอนุญาตจากเจ้าของลิขสิทธิ์ หรือเข้าข่ายข้อยกเว้น
+ตามกฎหมาย เช่น การใช้ส่วนตัวที่ไม่แสวงหากำไรตามพระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537 เท่านั้น
+ห้ามนำไปเผยแพร่ซ้ำ ขาย หรือใช้เชิงพาณิชย์โดยไม่ได้รับอนุญาต ห้ามใช้หลบเลี่ยงระบบป้องกัน
+การทำซ้ำ (DRM) หรือละเมิดเงื่อนไขของแพลตฟอร์ม ผู้ใช้รับผิดชอบต่อการใช้งานและผลทาง
+กฎหมายของตนเองแต่เพียงผู้เดียว
+
+3. ไม่มีการรับประกัน
+pull. ให้ใช้ “ตามสภาพที่เป็นอยู่” โดยไม่มีการรับประกันใดๆ แพลตฟอร์มอาจเปลี่ยนระบบได้
+ทุกเมื่อ ทำให้บางฟีเจอร์ใช้ไม่ได้ ผู้พัฒนาไม่มีหน้าที่ต้องแก้ไข อัปเดต หรือให้การสนับสนุน
+
+4. ข้อจำกัดความรับผิด
+ภายในขอบเขตสูงสุดที่กฎหมายอนุญาต ผู้พัฒนาไม่ต้องรับผิดต่อความเสียหายใดๆ ทั้งทางตรง
+และทางอ้อม รวมถึงข้อมูลสูญหาย ไฟล์เสียหาย ความเสียหายต่อเครื่อง การถูกระงับบัญชี
+หรือข้อเรียกร้องจากบุคคลที่สาม อันเกิดจากการใช้หรือไม่สามารถใช้ pull. ผู้ใช้ตกลงจะไม่
+เรียกร้อง และจะชดใช้ให้ผู้พัฒนาหากมีข้อเรียกร้องจากการใช้งานที่ผิดข้อตกลงนี้
+
+5. ความเป็นส่วนตัว
+pull. ไม่เก็บ ไม่ส่ง และไม่ขายข้อมูลส่วนบุคคล ไม่มีระบบติดตามหรือสถิติ ไม่ต้องสมัครสมาชิก
+คุกกี้ล็อกอินถูกอ่านจากเบราว์เซอร์เฉพาะตอนสั่งโหลด ส่งให้ตัวช่วยในเครื่องเดียวกันเท่านั้น
+และลบทิ้งเมื่อจบงาน การเชื่อมต่อมีเพียงไปยังแพลตฟอร์มที่คุณเลือกโหลด (รวมเซิร์ฟเวอร์วิดีโอ)
+และ GitHub
+ตอนติดตั้งหรืออัปเดตเครื่องมือ
+
+6. ซอฟต์แวร์ของบุคคลที่สาม
+ตัวติดตั้งดาวน์โหลด yt-dlp (Unlicense), FFmpeg (LGPL/GPL) และ Deno (MIT)
+จากแหล่งทางการมาไว้ในเครื่องของผู้ใช้ เครื่องมือเหล่านี้อยู่ภายใต้สัญญาอนุญาตของตนเอง
+ฟอนต์ Doto, Inter และ IBM Plex Sans Thai ใช้ภายใต้ SIL Open Font License
+
+7. เครื่องหมายการค้า
+pull. ไม่มีส่วนเกี่ยวข้องหรือได้รับการรับรองจาก YouTube, Google, Meta, Facebook,
+TikTok, Vimeo, Apple, Microsoft หรือผู้พัฒนาเบราว์เซอร์ใดๆ ชื่อทั้งหมดเป็นของเจ้าของ
+แต่ละราย ใช้เพื่อบอกความเข้ากันได้เท่านั้น
+
+8. ลิขสิทธิ์ของ pull.
+ชื่อ pull. โลโก้ SUNN. และงานออกแบบเป็นของ SUNN. (Trithaset Chaimongkol)
+แจกให้ใช้ฟรีเพื่อการใช้งานส่วนบุคคล ห้ามนำไปขาย ดัดแปลงแจกในชื่ออื่น หรือแนบซอฟต์แวร์อื่น
+ดาวน์โหลดจากหน้าดาวน์โหลดทางการเท่านั้น
+
+9. การเปลี่ยนแปลง
+ผู้พัฒนาอาจแก้ไขข้อตกลงนี้หรือหยุดให้บริการได้ทุกเมื่อโดยไม่ต้องแจ้งล่วงหน้า
+ฉบับล่าสุดคือฉบับบนหน้าดาวน์โหลดทางการ ข้อตกลงนี้อยู่ภายใต้กฎหมายไทย
