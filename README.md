@@ -14,8 +14,22 @@ by **LAB. x SUNN.** (Trithaset Chaimongkol)
 
 Works with Chrome, Brave, Edge and Arc, plus Safari on Mac. pull. updates itself once installed.
 
+### Easiest: one line in Terminal / PowerShell
+
+No security pop-ups, because the installer isn't downloaded through the browser.
+
+**Mac** (⌘ Space → Terminal):
+```
+curl -fsSL https://github.com/mutesonix/pull./releases/latest/download/install-mac.sh | bash
+```
+
+**Windows** (Start → PowerShell):
+```
+irm https://github.com/mutesonix/pull./releases/latest/download/install-win.ps1 | iex
+```
+
 **Windows:** if "Windows protected your PC" appears, click **More info → Run anyway** (the installer isn't code-signed yet).
-**Mac:** right-click **pull. Setup → Open**. If macOS blocks it: System Settings → Privacy & Security → **Open Anyway**.
+**Mac (downloaded zip):** open **pull. Setup**, press **Done** on the warning, then System Settings → Privacy & Security → **Open Anyway** and enter your password.
 
 ## Use responsibly
 
