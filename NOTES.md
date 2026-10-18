@@ -1,14 +1,9 @@
-## pull. 1.9.1
+## pull. 2.0.0 — Made for the edit
 
-- Downloads and updates now come straight from GitHub Releases — no Google Drive page in between.
-- Google Drive stays as a backup source for updates.
+- Range: switch on Range, press SET at IN and OUT on the timeline, and pull. downloads only that part — cut on exact frames.
+- Convert to ProRes 422 or DNxHR HQ (.mov) for smooth scrubbing in After Effects, Premiere and Resolve. Pick it in Settings → Convert to.
+- With ProRes or DNxHR picked, any download can be converted, not only 2K / 4K. Finished downloads get a → ProRes / → DNxHR button too.
+- Stills → SHOTS: one full-res frame per shot instead of a fixed interval, found by detecting the cuts.
+- SHOTS also writes _shots.csv (start, end and length of every shot) and _markers.jsx, which adds a marker at every cut in your After Effects comp.
 
-### 1.9.0 — Stills from the whole clip
-
-- New Stills: frames across the whole clip at full resolution — one every 10 s, 5 s or 1 s.
-- Each set comes with a contact sheet (_contact-sheet.jpg), saved in Downloads/pull/Stills.
-- Files are numbered and named by timecode, so they sort in order in Finder, Explorer, Premiere and AE.
-- 10 s and 5 s jump straight to each frame; 1 s reads the clip once, start to finish.
-- The download page now serves the installers itself.
-
-**Windows:** pull-setup-win.exe · **Mac:** pull-setup-mac.zip
+**Install:** Windows → pull-setup-win.exe · Mac → pull-setup-mac.zip, or the one-line installers in the README. Already on 1.8+? pull. offers this update by itself.
