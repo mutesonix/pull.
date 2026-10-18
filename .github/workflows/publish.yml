@@ -16,5 +16,5 @@ jobs:
         run: |
           V=$(tr -d ' \n' < VERSION)
           gh release delete "v$V" --yes --cleanup-tag 2>/dev/null || true
-          gh release create "v$V" pull-setup-win.exe pull-setup-mac.zip \
+          gh release create "v$V" pull-setup-win.exe pull-setup-mac.zip install-mac.sh install-win.ps1 \
             --title "pull. $V" --notes-file NOTES.md --latest --target "$GITHUB_SHA"
