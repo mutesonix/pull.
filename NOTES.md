@@ -1,9 +1,10 @@
-## pull. 2.0.0 — Made for the edit
+## pull. 2.0.1
 
-- Range: switch on Range, press SET at IN and OUT on the timeline, and pull. downloads only that part — cut on exact frames.
-- Convert to ProRes 422 or DNxHR HQ (.mov) for smooth scrubbing in After Effects, Premiere and Resolve. Pick it in Settings → Convert to.
-- With ProRes or DNxHR picked, any download can be converted, not only 2K / 4K. Finished downloads get a → ProRes / → DNxHR button too.
-- Stills → SHOTS: one full-res frame per shot instead of a fixed interval, found by detecting the cuts.
-- SHOTS also writes _shots.csv (start, end and length of every shot) and _markers.jsx, which adds a marker at every cut in your After Effects comp.
+- Setup on Windows: click Load unpacked and pull. fills in the folder and presses Select Folder for you — no more copying and pasting the path.
+- Stills work on YouTube again: when the stream can't be read directly, pull. fetches the video track first and makes the stills from that.
+- Stills progress shows while the video is being fetched.
+- YouTube: the pull. and capture buttons are their own small group at the start of the control bar, centred and sized like YouTube's buttons.
+- Updates replace the extension's files in place, so the browser never sees a half-copied folder, and update steps are written to the helper log.
+- Safari: the update progress keeps coming through until the install finishes.
 
-**Install:** Windows → pull-setup-win.exe · Mac → pull-setup-mac.zip, or the one-line installers in the README. Already on 1.8+? pull. offers this update by itself.
+**Install:** Windows → pull-setup-win.exe · Mac → pull-setup-mac.zip, or the one-line installers in the README. Already on 1.9.1 or later? pull. offers this update by itself.
