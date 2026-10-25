@@ -1,13 +1,12 @@
-## pull. 2.2.0 — Palettes, projects and polish
+## pull. 2.3.0 — Board folders
 
-- Board: every frame gets its five main colours with HEX codes. Click a swatch to copy it.
-- Board: click a frame to view it full screen. Use ← → to step through, Esc to close.
-- Subtitles with Range: the .srt is cut to IN → OUT and starts at 0, so it lines up with the trimmed clip.
-- Alt+Shift+G makes a GIF / WebP from the player: the trim range if you set one, otherwise the 5 s from the playhead.
-- Project folder: type a project name in Settings and every download, capture and board goes in its own folder. The name shows at the top of the popup.
-- Audio: pick WAV 48K next to MP3 for 48 kHz PCM that drops straight onto an edit timeline.
-- Links…: paste several links (or a whole block of text) and queue them all at once.
-- Capture flashes the video and the frame flies off toward pull. Trim brackets spring as they land, percentages roll, and a red dot beats while a job runs.
+- Reference board is now a page inside pull.: every frame from every day in one place, with All frames, Unsorted, Hidden and a list of days.
+- Folders: drag frames onto a folder (or onto + New folder) to sort them. A frame can sit in several folders and always stays in All frames. Drag inside a folder to reorder, double-click a folder to rename it.
+- Select several frames with the circle, Shift-click or Cmd/Ctrl+A and drag them together. Esc clears, Delete takes them out.
+- Everything saves on its own: folders, order, notes and hidden frames live in Boards/library.json next to your boards.
+- Export a folder as a board page, or Export overall for every folder in one page with a section each. Files go in Boards/Exports, ready to share or save as PDF.
+- Board and Update buttons now sit in the top bar of the popup. Update shows a red dot when a new pull. is ready.
+- New typeface: Sora for English text across pull. and the board pages.
 
 **Install:** Windows → pull-setup-win.exe · Mac → pull-setup-mac.zip, or the one-line installers in the README.
 
