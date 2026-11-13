@@ -1,4 +1,8 @@
-## pull. 2.5.0 · Pinterest + Safari that stays
+## pull. 2.5.1
+
+- Finished downloads in the list now have **Open**, which opens the file in its app, and **Folder** (was Show), which opens the folder with the file selected.
+
+### 2.5.0 · Pinterest + Safari that stays
 
 - **Pinterest:** download video pins in full quality, and image pins as the original uploaded image (saved in `Images`). Works on th.pinterest.com, pinterest.com and the other country sites, plus pin.it links. The pull. bar shows up over Pinterest videos too.
 - **Safari:** pull. now comes as a small Mac app that adds itself to Safari → Settings → Extensions, instead of a temporary extension Safari forgets every time it quits. No Xcode needed.
