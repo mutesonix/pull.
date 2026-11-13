@@ -83,6 +83,27 @@ jobs:
           codesign -dv "$R/pull.app/Contents/PlugIns/"*.appex 2>&1 | head -5
           lipo -info "$R/pull-host" "$SETUP/Contents/MacOS/pull-setup" "$R/pull.app/Contents/MacOS/pull"
           cd "$O" && ditto -c -k --keepParent "pull. Setup.app" "$GITHUB_WORKSPACE/pull-setup-mac.zip"
+      - name: Smoke test on this Mac
+        # install into a throwaway home with the real Setup, then talk to the Safari bridge like the extension does
+        run: |
+          SETUP="$RUNNER_TEMP/out/pull. Setup.app"
+          export PULL_TEST_HOME="$RUNNER_TEMP/home"; mkdir -p "$PULL_TEST_HOME"
+          "$SETUP/Contents/MacOS/pull-setup" --update
+          test -x "$PULL_TEST_HOME/Library/Application Support/pull/pull-host"
+          test -d "$PULL_TEST_HOME/Applications/pull.app"
+          codesign --verify --strict "$PULL_TEST_HOME/Applications/pull.app" && echo "installed pull.app verifies"
+          pluginkit -m -v -i com.sunn.pull.Extension || true
+          H='X-Pull-Client: ci'; B=http://127.0.0.1:17311
+          for i in $(seq 1 20); do curl -fs -H "$H" $B/v1/hello && break; sleep 1; done; echo
+          curl -fs -H "$H" -X POST -d '{"cmd":"ping","reqId":"p"}' $B/v1/send
+          curl -fs -H "$H" -X POST -d '{"cmd":"download","reqId":"d","id":"pin1","url":"https://www.pinterest.com/pin/664281013778109217/","options":{}}' $B/v1/send || true
+          for i in $(seq 1 45); do
+            OUT=$(curl -fs -H "$H" "$B/v1/events?after=0" || true)
+            echo "$OUT" | grep -q '"type":"done"\|"type":"error"' && break; sleep 2
+          done
+          echo "$OUT" | python3 -c "import json,sys; [print(json.dumps(e['msg'])[:400]) for e in json.load(sys.stdin)['events'] if e['msg'].get('type')!='progress']" || true
+          tail -20 "$TMPDIR/pull_host.log" || true
+          launchctl bootout gui/$(id -u)/com.sunn.pull.bridge || true
       - name: Notarize
         if: env.DEVID != '' && env.APPLE_ID != ''
         run: |
