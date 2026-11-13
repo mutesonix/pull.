@@ -1,11 +1,11 @@
-## pull. 2.4.0 · Snip
+## pull. 2.5.0 · Pinterest + Safari that stays
 
-- **Snip:** drag a box over the video, like Snipping Tool, and pull. saves just that part. It is cut from the video's own full-resolution frame, not from your screen, so a 4K video gives 4K pixels even in a small player.
-- Start it from the new dashed-box button in the player, the Snip button in the popup, the right-click menu or **Alt+Shift+X**. Enter takes the whole frame, Esc cancels. The size label shows the real pixel size as you drag.
-- Snips never fall back to player quality. If the site blocks the fast way, pull. gets a fresh link or downloads the video track once (kept for 2 hours, so more snips from the same video are instant).
-- Snips land in Captures with "snip" in the name, go on the board and are copied to the clipboard like any capture.
-- Capture no longer grabs the wrong video if you moved to another one while it was working.
+- **Pinterest:** download video pins in full quality, and image pins as the original uploaded image (saved in `Images`). Works on th.pinterest.com, pinterest.com and the other country sites, plus pin.it links. The pull. bar shows up over Pinterest videos too.
+- **Safari:** pull. now comes as a small Mac app that adds itself to Safari → Settings → Extensions, instead of a temporary extension Safari forgets every time it quits. No Xcode needed.
+- **Safari:** downloads no longer stop or vanish from the list when Safari puts pull. to sleep in the background. pull. picks the job back up and shows how it ended.
+- **Safari:** if macOS won't let the pull. helper write into Downloads, files go to Movies/pull instead of failing.
+- **Mac:** the helper and the Safari app are signed on a Mac during the release, and updates unpack with the Mac's own tools.
 
 **Install:** Windows → pull-setup-win.exe · Mac → pull-setup-mac.zip, or the one-line installers in the README.
 
-Already on 2.0.2 or newer: click Update in the pull. popup. Reload any open video tabs once after updating so the new player buttons show up.
+Already on 2.0.2 or newer: click Update in the pull. popup. Safari users: run pull. Setup once more and pick Safari to switch to the new pull. app.

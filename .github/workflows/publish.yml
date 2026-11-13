@@ -1,20 +1,111 @@
 name: publish release
 # Push the installers to the `release` branch (with a VERSION file) and this turns them into a GitHub Release.
+# A Mac runner first finishes the Mac installer:
+#   - builds pull.app (the Safari app) from pull-safari-ext.zip with Xcode, so Safari users never need Xcode
+#   - puts it inside "pull. Setup.app" and signs the helper, the Safari app and Setup
+#     · ad-hoc by default
+#     · with an Apple Developer ID + notarization when these repository secrets exist:
+#       MAC_CERT_P12 (base64 .p12 of "Developer ID Application"), MAC_CERT_PASSWORD,
+#       APPLE_ID, APPLE_APP_PASSWORD (app-specific password), APPLE_TEAM_ID
 on:
   push:
-    branches: [release]
+    branches: [release, 'claude/**']
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
+  mac:
+    runs-on: macos-15
+    env:
+      MAC_CERT_P12: ${{ secrets.MAC_CERT_P12 }}
+      MAC_CERT_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Signing identity
+        run: |
+          if [ -n "$MAC_CERT_P12" ]; then
+            KC="$RUNNER_TEMP/sign.keychain-db"
+            security create-keychain -p ci "$KC"
+            security set-keychain-settings "$KC"
+            security unlock-keychain -p ci "$KC"
+            echo "$MAC_CERT_P12" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+            security import "$RUNNER_TEMP/cert.p12" -k "$KC" -P "$MAC_CERT_PASSWORD" -T /usr/bin/codesign
+            security set-key-partition-list -S apple-tool:,apple: -s -k ci "$KC" >/dev/null
+            security list-keychains -d user -s "$KC" $(security list-keychains -d user | tr -d '"')
+            ID=$(security find-identity -v -p codesigning "$KC" | awk -F'"' '/Developer ID Application/{print $2; exit}')
+            echo "SIGN_ID=$ID" >> "$GITHUB_ENV"; echo "DEVID=1" >> "$GITHUB_ENV"
+            echo "Signing with: $ID"
+          else
+            echo "SIGN_ID=-" >> "$GITHUB_ENV"; echo "DEVID=" >> "$GITHUB_ENV"
+            echo "No Developer ID secrets: ad-hoc signing"
+          fi
+      - name: Build the Safari app
+        run: |
+          W="$RUNNER_TEMP/safari"; mkdir -p "$W/extension-safari"
+          ditto -x -k pull-safari-ext.zip "$W/extension-safari"
+          V=$(tr -d ' \n' < VERSION)
+          xcrun safari-web-extension-converter "$W/extension-safari" --project-location "$W/proj" \
+            --app-name pull --bundle-identifier com.sunn.pull --swift --macos-only --copy-resources --no-open --no-prompt --force
+          PROJ=$(find "$W/proj" -maxdepth 3 -name '*.xcodeproj' | head -1)
+          xcodebuild -list -project "$PROJ"
+          SCHEME=$(xcodebuild -list -project "$PROJ" 2>/dev/null | awk '/Schemes:/{f=1;next} f&&NF{gsub(/^ +| +$/,"");print;exit}')
+          xcodebuild -project "$PROJ" -scheme "$SCHEME" -configuration Release -derivedDataPath "$W/build" \
+            MARKETING_VERSION="$V" CURRENT_PROJECT_VERSION="$V" ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY=- CODE_SIGNING_REQUIRED=NO CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= build | tail -5
+          APP=$(find "$W/build/Build/Products/Release" -maxdepth 1 -name '*.app' | head -1)
+          [ -d "$APP" ] || { echo "no app built"; exit 1; }
+          echo "SAFARI_APP=$APP" >> "$GITHUB_ENV"
+          ls "$APP/Contents/PlugIns"
+      - name: Put it in pull. Setup and sign
+        run: |
+          O="$RUNNER_TEMP/out"; mkdir -p "$O"
+          ditto -x -k pull-setup-mac.zip "$O"
+          SETUP="$O/pull. Setup.app"; R="$SETUP/Contents/Resources"
+          ditto "$SAFARI_APP" "$R/pull.app"
+          OPTS=(--force --sign "$SIGN_ID")
+          [ -n "$DEVID" ] && OPTS+=(--options runtime --timestamp)
+          # inside out: helper, Safari extension, Safari app, then Setup itself
+          codesign "${OPTS[@]}" "$R/pull-host"
+          for X in "$R/pull.app/Contents/PlugIns/"*.appex "$R/pull.app"; do
+            codesign "${OPTS[@]}" --preserve-metadata=entitlements,identifier "$X"
+          done
+          [ -n "$DEVID" ] && : > "$R/signed"
+          codesign "${OPTS[@]}" "$SETUP"
+          codesign --verify --strict --deep --verbose=2 "$SETUP"
+          codesign -dv "$R/pull.app/Contents/PlugIns/"*.appex 2>&1 | head -5
+          lipo -info "$R/pull-host" "$SETUP/Contents/MacOS/pull-setup" "$R/pull.app/Contents/MacOS/pull"
+          cd "$O" && ditto -c -k --keepParent "pull. Setup.app" "$GITHUB_WORKSPACE/pull-setup-mac.zip"
+      - name: Notarize
+        if: env.DEVID != '' && env.APPLE_ID != ''
+        run: |
+          xcrun notarytool submit pull-setup-mac.zip --apple-id "$APPLE_ID" --password "$APPLE_APP_PASSWORD" --team-id "$APPLE_TEAM_ID" --wait
+          O="$RUNNER_TEMP/out"
+          xcrun stapler staple "$O/pull. Setup.app"
+          rm pull-setup-mac.zip && (cd "$O" && ditto -c -k --keepParent "pull. Setup.app" "$GITHUB_WORKSPACE/pull-setup-mac.zip")
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mac
+          path: pull-setup-mac.zip
+
   publish:
+    needs: mac
+    if: github.ref == 'refs/heads/release'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: mac
+          path: mac
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           V=$(tr -d ' \n' < VERSION)
+          cp mac/pull-setup-mac.zip pull-setup-mac.zip
           gh release delete "v$V" --yes --cleanup-tag 2>/dev/null || true
           gh release create "v$V" pull-setup-win.exe pull-setup-mac.zip install-mac.sh install-win.ps1 \
             --title "pull. $V" --notes-file NOTES.md --latest --target "$GITHUB_SHA"
