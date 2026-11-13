@@ -65,6 +65,11 @@ jobs:
           ditto -x -k pull-setup-mac.zip "$O"
           SETUP="$O/pull. Setup.app"; R="$SETUP/Contents/Resources"
           ditto "$SAFARI_APP" "$R/pull.app"
+          # rebuild the universal binaries with Apple's lipo, so codesign's strict checks are happy
+          for B in "$R/pull-host" "$SETUP/Contents/MacOS/pull-setup"; do
+            lipo "$B" -thin arm64 -output "$RUNNER_TEMP/a" && lipo "$B" -thin x86_64 -output "$RUNNER_TEMP/x"
+            lipo -create "$RUNNER_TEMP/a" "$RUNNER_TEMP/x" -output "$B" && chmod 755 "$B"
+          done
           OPTS=(--force --sign "$SIGN_ID")
           [ -n "$DEVID" ] && OPTS+=(--options runtime --timestamp)
           # inside out: helper, Safari extension, Safari app, then Setup itself
